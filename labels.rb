@@ -1,22 +1,32 @@
-Bundler.require
+class Label
+  STATUS_TO_COLOR_MAPPING = {
+    'created' => :blue,
+    'failed' => :red
+  }.freeze
 
-require_relative './config.rb'
+  attr_reader :date
 
-status_to_color_mapping = {
-  "created" => :blue,
-  "failed" => :red
-}
+  def initialize(date)
+    @date = Date.parse(date)
+    require_relative './config.rb'
+  end
 
-labels = Postmen::Label.all(created_at_min: Date.parse('2016-12-31'))
+  def table
+    Terminal::Table.new headings: ['ID', 'Status', 'Tracking numbers', 'Label'], rows: rows
+  end
 
-rows = labels.map do |label|
-  [
-    label.id,
-    label.status.colorize(status_to_color_mapping[label.status]),
-    label.tracking_numbers.join(', '),
-    label.files.to_h.dig(:label, :url)
-  ]
+  def rows
+    labels.map do |label|
+      [
+        label.id,
+        label.status.colorize(STATUS_TO_COLOR_MAPPING[label.status]),
+        label.tracking_numbers.join(', '),
+        label.files.to_h.dig(:label, :url)
+      ]
+    end
+  end
+
+  def labels
+    @labels ||= Postmen::Label.all(created_at_min: date)
+  end
 end
-
-
-puts Terminal::Table.new headings: ['ID', 'Status', 'Tracking numbers', 'Label'], rows: rows

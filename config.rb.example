@@ -1,4 +1,0 @@
-Postmen.configure do |config|
-  config.region = 'REGION' # 'sandbox' or 'production'
-  config.api_key = 'YOUR API KEY'
-end
