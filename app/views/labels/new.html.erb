@@ -1,0 +1,6 @@
+<%= simple_form_for :label, html: { class: "form-horizontal" } do |f| %>
+  <%= f.input :service_type %>
+  <%= f.input :shipper_account_id, collection: @shipper_accounts, label_method: :description %>
+  <%= f.input :paper_size, collection: @paper_sizes %>
+  <%= f.input :paid_by, collection: ["Shipper", "Third party"] %>
+<% end %>
