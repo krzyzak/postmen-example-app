@@ -7,7 +7,6 @@ This is an example app, which uses <a href="github.com/postmen/postmen-sdk-ruby"
 1. Clone/download respository from `https://github.com/krzyzak/postmen-example-app.git`
 2. Bundle it: `bundle install`
 3. Copy `config/secrets.yml.example` to `config/secrets.yml`, fill in your API key and region
-4. Set it up: `bundle exec ruby postmen.rb setup`
 
 ## Running
 
