@@ -1,0 +1,29 @@
+<h1>Listing Shipper Accounts</h1>
+
+<%= simple_form_for :shipper_account, url: shipper_accounts_path, method: :get, html: { class: "form-inline" } do |f| %>
+  <%= f.input :slug, input_html: { value: @slug } %>
+  <%= f.submit 'Change' %>
+<% end %>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Slug</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @shipper_accounts.each do |shipper_account| %>
+      <tr>
+        <td><%= shipper_account.id %></td>
+        <td><%= shipper_account.slug %></td>
+        <td><%= shipper_account.description %></td>
+        <td><%= shipper_account.type %></td>
+        <td><%= shipper_account.status %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
