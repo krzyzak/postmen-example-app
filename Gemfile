@@ -52,7 +52,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'postmen', path: "/home/krzyzak/Projects/Aftership/postmen-sdk-ruby"
+gem 'postmen', '~> 1.0.2'
 gem 'simple_form'
 gem "twitter-bootstrap-rails"
 gem 'thor'
