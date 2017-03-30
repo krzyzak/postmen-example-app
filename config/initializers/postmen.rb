@@ -1,4 +1,4 @@
-region = Rails.application.secerts.region
+region = Rails.application.secrets.region
 api_key = Rails.application.secrets.api_key
 
 raise "Please set api_key and region in config/secrerts.yml file" unless [rergion, api_key].all?
