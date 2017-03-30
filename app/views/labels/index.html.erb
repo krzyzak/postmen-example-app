@@ -4,6 +4,8 @@
   <%= f.input :date, input_html: { value: @date,  class: 'datepicker' } %>
   <%= f.submit 'Change' %>
 <% end %>
+
+<%= link_to 'Create new label', new_label_path, class: 'btn btn-primary' %>
 <table class="table table-bordered table-striped">
   <thead>
     <tr>

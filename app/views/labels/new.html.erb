@@ -1,6 +1,41 @@
-<%= simple_form_for :label, html: { class: "form-horizontal" } do |f| %>
+<%= simple_form_for :label, url: labels_path, html: { class: "form-horizontal" } do |f| %>
   <%= f.input :service_type %>
   <%= f.input :shipper_account_id, collection: @shipper_accounts, label_method: :description %>
   <%= f.input :paper_size, collection: @paper_sizes %>
   <%= f.input :paid_by, collection: ["Shipper", "Third party"] %>
+
+  <%= f.simple_fields_for :shippment do |s| %>
+    <%- [:ship_from, :ship_to].each do |key| %>
+      <fieldset>
+        <h2><%= key.to_s.titleize %></h2>
+        <%= f.simple_fields_for key do |p| %>
+          <%- [:country, :contact_name, :street1, :city, :state, :postal_code].each do |field| %>
+            <%= p.input field %>
+          <% end %>
+        <% end %>
+      </fieldset>
+    <% end %>
+  <% end %>
+  <h2>Package</h2>
+  <%= f.simple_fields_for :parcel do |p| %>
+    <%= p.input :description %>
+    <%= p.input :quantity %>
+    <%= p.simple_fields_for :price do |c| %>
+      <%= c.input :amount %>
+      <%= c.input :currency %>
+    <% end %>
+    <%= p.fields_for :weight do |w| %>
+      <%= w.input :value %>
+      <%= w.input :unit, collection: ['lb','kg','oz','g'] %>
+    <% end %>
+    <h3>Dimensions</h3>
+    <%= f.simple_fields_for :dimension do |d| %>
+      <%= d.input :width %>
+      <%= d.input :height %>
+      <%= d.input :depth %>
+      <%= d.input :unit, collection: ['cm','in','mm','m','ft','yd'] %>
+    <% end %>
+
+  <% end %>
+  <%= f.submit %>
 <% end %>
