@@ -2,7 +2,7 @@
 
 ## Synopsis
 
-This is an example app, which uses <a href="github.com/postmen/postmen-sdk-ruby">Postmen SDK</a>.
+This is an example app, which uses <a href="https://github.com/postmen/postmen-sdk-ruby">Postmen SDK</a>.
 
 It aims to quickly demonstrate how to build an app which uses <a href="https://postmen.com">Postmen</a>.
 
